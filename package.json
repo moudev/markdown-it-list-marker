@@ -1,0 +1,21 @@
+{
+  "name": "markdown-it-list-custom-literals",
+  "version": "0.0.1",
+  "description": "Markdown-it plugin to create list with custom literals",
+  "main": "index.js",
+  "scripts": {
+    "dev": "dev",
+    "test": "test",
+    "build": "buld"
+  },
+  "keywords": [
+    "markdown-it",
+    "markdown",
+    "markdown-it",
+    "markdown-it-plugin",
+    "markdown-it-list",
+    "markdown-list"
+  ],
+  "author": "Mauricio Martínez <@_codemart/@moudev>",
+  "license": "ISC"
+}
