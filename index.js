@@ -1,3 +1,5 @@
-const v = "a"
+const sum = (a, b) => {
+  return a + b
+}
 
-console.log(v)
+export { sum }

@@ -7,7 +7,7 @@
     "dev": "rimraf dist && rollup -c -w",
     "build": "rimraf dist && rollup -c",
     "prepare": "husky install",
-    "test": "test"
+    "test": "vitest"
   },
   "keywords": [
     "markdown-it",
@@ -31,7 +31,8 @@
     "lint-staged": "^12.3.7",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.70.1"
+    "rollup": "^2.70.1",
+    "vitest": "^0.9.3"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix"
