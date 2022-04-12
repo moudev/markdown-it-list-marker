@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Markdown-it plugin to create list with custom literals",
   "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "dev": "rimraf dist && rollup -c -w",
     "build": "rimraf dist && rollup -c",
