@@ -1,5 +1,7 @@
-const sum = (a, b) => {
-  return a + b
+const listCustomLiterals = (md) => {
+  console.log(md)
 }
 
-export { sum }
+module.exports = function (md) {
+  md.core.ruler.push("listCustomLiterals", listCustomLiterals)
+}
