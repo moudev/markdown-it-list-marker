@@ -2,11 +2,12 @@
   "name": "markdown-it-list-custom-literals",
   "version": "0.0.1",
   "description": "Markdown-it plugin to create list with custom literals",
-  "main": "index.js",
+  "main": "dist/index.cjs.js",
   "scripts": {
-    "dev": "dev",
-    "test": "test",
-    "build": "buld"
+    "dev": "rimraf dist && rollup -c -w",
+    "build": "rimraf dist && rollup -c",
+    "prepare": "husky install",
+    "test": "vitest"
   },
   "keywords": [
     "markdown-it",
@@ -17,5 +18,23 @@
     "markdown-list"
   ],
   "author": "Mauricio Martínez <@_codemart/@moudev>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
+    "vitest": "^0.9.3"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
 }
