@@ -19,6 +19,7 @@ const listCustomLiterals = (md) => {
 
     if (isListItemOpen && isInlineInsideListItemOpen) {
       console.log("isListItemOpen")
+      originalTextNode.children[0].content = "updated text"
     }
   })
 }
