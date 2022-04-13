@@ -19,8 +19,8 @@ describe("markdown-it", () => {
   it("render", () => {
     const md = MarkdownIt().use(plugin)
 
-    const noRenderedList = fs.readFileSync("test/no-rendered-list.txt", "utf8")
-    const renderedList = fs.readFileSync("test/rendered-list.txt", "utf8")
+    const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
+    const renderedList = fs.readFileSync("test/rendered-list.html", "utf8")
 
     const rendered = md.render(noRenderedList)
 

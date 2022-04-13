@@ -1,4 +1,6 @@
 const listCustomLiterals = (md) => {
+  const newTokens = []
+
   md.tokens.forEach((token, tokenIndex) => {
     /*
     'list_item' token structure:
@@ -12,16 +14,28 @@ const listCustomLiterals = (md) => {
     const isListItemOpen = token.type === "list_item_open"
 
     // Math.min() to avoid exceed the tokens array length
-    const originalTextNode =
+    const inlineToken =
       md.tokens[Math.min(tokenIndex + 2, md.tokens.length - 1)]
     const isInlineInsideListItemOpen =
-      originalTextNode && originalTextNode.type === "inline"
+      inlineToken && inlineToken.type === "inline"
 
     if (isListItemOpen && isInlineInsideListItemOpen) {
-      console.log("isListItemOpen")
-      originalTextNode.children[0].content = "updated text"
+      newTokens.push(token)
+
+      const open = new md.Token("paragraph_open", "span", 1)
+      newTokens.push(open)
+
+      const text = new md.Token("text", "", 0)
+      text.content = "new Token"
+      newTokens.push(text)
+
+      const close = new md.Token("paragraph_close", "span", -1)
+      newTokens.push(close)
+    } else {
+      newTokens.push(token)
     }
   })
+  md.tokens = newTokens
 }
 
 module.exports = function (md) {

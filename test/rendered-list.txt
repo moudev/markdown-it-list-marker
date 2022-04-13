@@ -1,4 +1,0 @@
-<ul>
-<li>updated text</li>
-<li>updated text</li>
-</ul>
