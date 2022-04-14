@@ -25,20 +25,32 @@ const listCustomLiterals = (md) => {
       // flag to remove the 'inline' element because the text will be in the 'span' element
       inlineToken.delete = true
 
+      /* Marker item */
       // https://github.com/markdown-it/markdown-it/blob/d72c68b520cedacae7878caa92bf7fe32e3e0e6f/lib/token.js#L49
-      const open = new md.Token("paragraph_open", "span", 1)
-      newTokens.push(open)
+      const openMarker = new md.Token("paragraph_open", "span", 1)
+      newTokens.push(openMarker)
+
+      const textMarker = new md.Token("text", "", 0)
+      textMarker.content = "marker"
+      newTokens.push(textMarker)
+
+      const closeMarker = new md.Token("paragraph_close", "span", -1)
+      newTokens.push(closeMarker)
+
+      /* Message item */
+      const openMessage = new md.Token("paragraph_open", "span", 1)
+      newTokens.push(openMessage)
 
       const inlineTokenText = inlineToken.children
         ? inlineToken.children[0].content
         : ""
 
-      const text = new md.Token("text", "", 0)
-      text.content = inlineTokenText
-      newTokens.push(text)
+      const textMessage = new md.Token("text", "", 0)
+      textMessage.content = inlineTokenText
+      newTokens.push(textMessage)
 
-      const close = new md.Token("paragraph_close", "span", -1)
-      newTokens.push(close)
+      const closeMessage = new md.Token("paragraph_close", "span", -1)
+      newTokens.push(closeMessage)
     } else {
       if (!token.delete) {
         newTokens.push(token)
