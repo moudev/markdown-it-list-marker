@@ -1,0 +1,17 @@
+li.custom-list {
+  position: relative;
+}
+
+li.custom-list span.literal {
+  position: absolute;
+  height: 27.1875px;
+  width: 8px;
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+  left: -17px;
+}
+
+li.custom-list span.literal-message {
+  text-align: left;
+}

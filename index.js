@@ -20,6 +20,7 @@ const listCustomLiterals = (md) => {
       inlineToken && inlineToken.type === "inline"
 
     if (isListItemOpen && isInlineInsideListItemOpen) {
+      token.attrJoin("class", "custom-list")
       newTokens.push(token)
 
       // flag to remove the 'inline' element because the text will be in the 'span' element
@@ -28,6 +29,7 @@ const listCustomLiterals = (md) => {
       /* Marker item */
       // https://github.com/markdown-it/markdown-it/blob/d72c68b520cedacae7878caa92bf7fe32e3e0e6f/lib/token.js#L49
       const openMarker = new md.Token("paragraph_open", "span", 1)
+      openMarker.attrJoin("class", "literal")
       newTokens.push(openMarker)
 
       const textMarker = new md.Token("text", "", 0)
@@ -39,6 +41,7 @@ const listCustomLiterals = (md) => {
 
       /* Message item */
       const openMessage = new md.Token("paragraph_open", "span", 1)
+      openMessage.attrJoin("class", "literal-text")
       newTokens.push(openMessage)
 
       const inlineTokenText = inlineToken.children
