@@ -1,6 +1,16 @@
 const listCustomLiterals = (md) => {
   const newTokens = []
 
+  // markdown-it creates an ordered list when detects ")" or "."
+  // https://github.com/markdown-it/markdown-it/blob/d72c68b520cedacae7878caa92bf7fe32e3e0e6f/lib/rules_block/list.js#L66
+  let separator = md.md.options.literalSeparator || "-"
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+  separator =
+    typeof separator === "object"
+      ? `[\\${separator.join("\\")}]`
+      : `\\${separator}`
+
   md.tokens.forEach((token, tokenIndex) => {
     /*
     'list_item' token structure:
@@ -20,20 +30,20 @@ const listCustomLiterals = (md) => {
       inlineToken && inlineToken.type === "inline"
 
     if (isListItemOpen && isInlineInsideListItemOpen) {
+      newTokens.push(token)
+
       const inlineTokenText = inlineToken.children
         ? inlineToken.children[0].content
         : ""
 
       const literalRegexGroups = inlineTokenText.match(
-        // eslint-disable-next-line no-useless-escape
-        /(.*\S[\_\-\%\$])\s(.+)/
+        new RegExp(`(.*\\S${separator})\\s(.+)`)
       )
       const isLiteralRegexMatch =
         literalRegexGroups && literalRegexGroups.length > 0
 
       if (isLiteralRegexMatch) {
         token.attrJoin("class", "custom-list")
-        newTokens.push(token)
 
         // flag to remove the 'inline' element because the text will be in the 'span' element
         inlineToken.delete = true

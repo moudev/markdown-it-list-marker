@@ -16,11 +16,44 @@ function adjustEOL(text) {
 }
 
 describe("markdown-it", () => {
-  it("render", () => {
+  it("render literalSeparator null", () => {
     const md = MarkdownIt().use(plugin)
 
     const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
-    const renderedList = fs.readFileSync("test/rendered-list.html", "utf8")
+    const renderedList = fs.readFileSync(
+      "test/rendered-list-separator-null.html",
+      "utf8"
+    )
+
+    const rendered = md.render(noRenderedList)
+
+    expect(adjustEOL(rendered)).toEqual(renderedList)
+  })
+
+  it("render literalSeparator string", () => {
+    const md = MarkdownIt().use(plugin)
+    md.set({ literalSeparator: "$" })
+
+    const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
+    const renderedList = fs.readFileSync(
+      "test/rendered-list-separator-string.html",
+      "utf8"
+    )
+
+    const rendered = md.render(noRenderedList)
+
+    expect(adjustEOL(rendered)).toEqual(renderedList)
+  })
+
+  it("render literalSeparator array", () => {
+    const md = MarkdownIt().use(plugin)
+    md.set({ literalSeparator: ["_", "-", "%", "$"] })
+
+    const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
+    const renderedList = fs.readFileSync(
+      "test/rendered-list-separator-array.html",
+      "utf8"
+    )
 
     const rendered = md.render(noRenderedList)
 
