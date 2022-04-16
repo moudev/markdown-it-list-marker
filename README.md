@@ -4,6 +4,10 @@ markdown-it plugin to create list with custom markers. The item list can be divi
 
 Check `test/index.test.js` to see examples of the plugin configuration.
 
+**Set list style (important)**
+
+The style can be copied from the `index.css` and adds it directly to the style of your project. The second option is to add a `<link>` tag in the `<head>` of the `index.html` and set the `src` attribute with `https://cdn.jsdelivr.net/npm/markdown-it-list-marker/index.css`
+
 ## Prerequisites
 
 - [`yarn`](https://classic.yarnpkg.com/en/docs/install#windows-stable)
