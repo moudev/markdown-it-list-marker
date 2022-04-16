@@ -1,10 +1,13 @@
 {
   "name": "markdown-it-list-marker",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Markdown-it plugin to create list with custom markers",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "files": ["dist/*", "index.css"],
+  "files": [
+    "dist/*",
+    "index.css"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/moudev/markdown-it-list-marker"
