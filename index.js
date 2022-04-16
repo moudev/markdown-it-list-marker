@@ -1,9 +1,10 @@
 const listCustomLiterals = (md) => {
   const newTokens = []
+  const defaultSeparator = "-"
 
   // markdown-it creates an ordered list when detects ")" or "."
   // https://github.com/markdown-it/markdown-it/blob/d72c68b520cedacae7878caa92bf7fe32e3e0e6f/lib/rules_block/list.js#L66
-  let separator = md.md.options.literalSeparator || "-"
+  let separator = md.md.options.literalSeparator || defaultSeparator
 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
   separator =
