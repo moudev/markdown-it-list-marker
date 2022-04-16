@@ -9,7 +9,9 @@
     "dev": "rimraf dist && rollup -c -w",
     "build": "rimraf dist && rollup -c",
     "prepare": "husky install",
-    "test": "vitest"
+    "test": "vitest",
+    "test:run": "vitest run",
+    "prepublishOnly": "npm run test:run && npm run build"
   },
   "keywords": [
     "markdown-it",
