@@ -16,7 +16,7 @@ function adjustEOL(text) {
 }
 
 describe("markdown-it", () => {
-  it("render literalSeparator null", () => {
+  it("render markerSeparator null", () => {
     const md = MarkdownIt().use(plugin)
 
     const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
@@ -30,9 +30,9 @@ describe("markdown-it", () => {
     expect(adjustEOL(rendered)).toEqual(renderedList)
   })
 
-  it("render literalSeparator string", () => {
+  it("render markerSeparator string", () => {
     const md = MarkdownIt().use(plugin)
-    md.set({ literalSeparator: "$" })
+    md.set({ markerSeparator: "$" })
 
     const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
     const renderedList = fs.readFileSync(
@@ -45,9 +45,9 @@ describe("markdown-it", () => {
     expect(adjustEOL(rendered)).toEqual(renderedList)
   })
 
-  it("render literalSeparator array", () => {
+  it("render markerSeparator array", () => {
     const md = MarkdownIt().use(plugin)
-    md.set({ literalSeparator: ["_", "-", "%", "$"] })
+    md.set({ markerSeparator: ["_", "-", "%", "$"] })
 
     const noRenderedList = fs.readFileSync("test/no-rendered-list.md", "utf8")
     const renderedList = fs.readFileSync(
