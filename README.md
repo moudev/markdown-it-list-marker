@@ -1,6 +1,8 @@
 # markdown-it-list-marker
 
-markdown-it plugin to create list with custom markers.
+markdown-it plugin to create list with custom markers. The item list can be divided by a string or an array of strings.
+
+Check `test/index.test.js` to see examples of the plugin configuration.
 
 ## Prerequisites
 
