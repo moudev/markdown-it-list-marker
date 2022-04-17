@@ -1,10 +1,10 @@
-const listCustomLiterals = (md) => {
+const listMarker = (md) => {
   const newTokens = []
-  const defaultSeparator = "-"
+  const defaultMarkerSeparator = "-"
 
   // markdown-it creates an ordered list when detects ")" or "."
   // https://github.com/markdown-it/markdown-it/blob/d72c68b520cedacae7878caa92bf7fe32e3e0e6f/lib/rules_block/list.js#L66
-  let separator = md.md.options.markerSeparator || defaultSeparator
+  let separator = md.md.options.markerSeparator || defaultMarkerSeparator
 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
   separator =
@@ -37,11 +37,10 @@ const listCustomLiterals = (md) => {
         ? inlineToken.children[0].content
         : ""
 
-      const literalRegexGroups = inlineTokenText.match(
+      const itemRegexGroups = inlineTokenText.match(
         new RegExp(`(.*\\S${separator})\\s(.+)`)
       )
-      const isLiteralRegexMatch =
-        literalRegexGroups && literalRegexGroups.length > 0
+      const isLiteralRegexMatch = itemRegexGroups && itemRegexGroups.length > 0
 
       if (isLiteralRegexMatch) {
         token.attrJoin("class", "custom-list")
@@ -55,9 +54,9 @@ const listCustomLiterals = (md) => {
         openMarker.attrJoin("class", "literal")
         newTokens.push(openMarker)
 
-        const textMarker = new md.Token("text", "", 0)
-        textMarker.content = literalRegexGroups[1]
-        newTokens.push(textMarker)
+        const markerText = new md.Token("text", "", 0)
+        markerText.content = itemRegexGroups[1]
+        newTokens.push(markerText)
 
         const closeMarker = new md.Token("paragraph_close", "span", -1)
         newTokens.push(closeMarker)
@@ -67,9 +66,9 @@ const listCustomLiterals = (md) => {
         openMessage.attrJoin("class", "literal-text")
         newTokens.push(openMessage)
 
-        const textMessage = new md.Token("text", "", 0)
-        textMessage.content = literalRegexGroups[2]
-        newTokens.push(textMessage)
+        const messageText = new md.Token("text", "", 0)
+        messageText.content = itemRegexGroups[2]
+        newTokens.push(messageText)
 
         const closeMessage = new md.Token("paragraph_close", "span", -1)
         newTokens.push(closeMessage)
@@ -84,5 +83,5 @@ const listCustomLiterals = (md) => {
 }
 
 module.exports = function (md) {
-  md.core.ruler.push("listCustomLiterals", listCustomLiterals)
+  md.core.ruler.push("listMarker", listMarker)
 }
