@@ -45,7 +45,7 @@ const listMarker = (md) => {
       const isLiteralRegexMatch = itemRegexGroups && itemRegexGroups.length > 0
 
       if (isLiteralRegexMatch) {
-        token.attrJoin("class", "custom-list")
+        token.attrJoin("class", "md-it-list-marker__item")
 
         // flag to remove the 'inline' element because the text will be in the 'span' element
         inlineToken.delete = true
@@ -53,7 +53,7 @@ const listMarker = (md) => {
         /* Marker item */
         // https://github.com/markdown-it/markdown-it/blob/d72c68b520cedacae7878caa92bf7fe32e3e0e6f/lib/token.js#L49
         const openMarker = new md.Token("paragraph_open", "span", 1)
-        openMarker.attrJoin("class", "literal")
+        openMarker.attrJoin("class", "md-it-list-marker__marker")
         newTokens.push(openMarker)
 
         const markerText = new md.Token("text", "", 0)
@@ -65,7 +65,7 @@ const listMarker = (md) => {
 
         /* Message item */
         const openMessage = new md.Token("paragraph_open", "span", 1)
-        openMessage.attrJoin("class", "literal-text")
+        openMessage.attrJoin("class", "md-it-list-marker__text")
         newTokens.push(openMessage)
 
         const messageText = new md.Token("text", "", 0)
@@ -77,7 +77,10 @@ const listMarker = (md) => {
 
         /** update opened <ul> element class only when the list contains a match */
         if (tmpOpenListTokenPosition) {
-          newTokens[tmpOpenListTokenPosition].attrJoin("class", "markdown-list")
+          newTokens[tmpOpenListTokenPosition].attrJoin(
+            "class",
+            "md-it-list-marker__list"
+          )
           tmpOpenListTokenPosition = null
         }
       }
@@ -95,5 +98,5 @@ const listMarker = (md) => {
 }
 
 module.exports = function (md) {
-  md.core.ruler.push("listMarker", listMarker)
+  md.core.ruler.push("md-it-list-marker", listMarker)
 }
