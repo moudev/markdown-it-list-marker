@@ -1,8 +1,8 @@
-li.custom-list {
+li.md-it-list-marker__item {
   position: relative;
 }
 
-li.custom-list span.literal {
+span.md-it-list-marker__marker {
   position: absolute;
   height: 27.1875px;
   width: 8px;
@@ -12,6 +12,6 @@ li.custom-list span.literal {
   left: -17px;
 }
 
-li.custom-list span.literal-message {
+span.md-it-list-marker__text {
   text-align: left;
 }
