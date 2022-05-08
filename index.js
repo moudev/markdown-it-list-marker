@@ -12,6 +12,8 @@ const listMarker = (md) => {
       ? `[\\${separator.join("\\")}]`
       : `\\${separator}`
 
+  let tmpOpenListTokenPosition = null
+
   md.tokens.forEach((token, tokenIndex) => {
     /*
     'list_item' token structure:
@@ -72,10 +74,20 @@ const listMarker = (md) => {
 
         const closeMessage = new md.Token("paragraph_close", "span", -1)
         newTokens.push(closeMessage)
+
+        /** update opened <ul> element class only when the list contains a match */
+        if (tmpOpenListTokenPosition) {
+          newTokens[tmpOpenListTokenPosition].attrJoin("class", "markdown-list")
+          tmpOpenListTokenPosition = null
+        }
       }
     } else {
       if (!token.delete) {
-        newTokens.push(token)
+        const newListLength = newTokens.push(token)
+
+        if (token.type === "bullet_list_open") {
+          tmpOpenListTokenPosition = newListLength - 1
+        }
       }
     }
   })

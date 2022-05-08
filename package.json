@@ -18,6 +18,7 @@
   "homepage": "https://github.com/moudev/markdown-it-list-marker",
   "scripts": {
     "dev": "rimraf dist && rollup -c -w",
+    "dev:yalc": "npm run build && yalc publish && yalc push",
     "build": "rimraf dist && rollup -c",
     "prepare": "husky install",
     "test": "vitest",
